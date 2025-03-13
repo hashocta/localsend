@@ -197,9 +197,9 @@ class SettingsTab extends StatelessWidget {
                     label: t.settingsTab.receive.destination,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
-                        shape: RoundedRectangleBorder(borderRadius: Theme.of(context).inputDecorationTheme.borderRadius),
-                        foregroundColor: Theme.of(context).colorScheme.onSurface,
+                        backgroundColor: Colors.blueGrey[800],
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        foregroundColor: Colors.white,
                       ),
                       onPressed: () async {
                         if (vm.settings.destination != null) {
@@ -220,7 +220,7 @@ class SettingsTab extends StatelessWidget {
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Text(vm.settings.destination ?? t.settingsTab.receive.downloads, style: Theme.of(context).textTheme.titleMedium),
+                        child: Text(vm.settings.destination ?? t.settingsTab.receive.downloads, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ),
@@ -247,6 +247,12 @@ class SettingsTab extends StatelessWidget {
                   },
                 ),
               ],
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[900],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(10),
+              titleStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             if (vm.advanced)
               _SettingsSection(
@@ -679,11 +685,15 @@ class _SettingsSection extends StatelessWidget {
   final String title;
   final List<Widget> children;
   final EdgeInsets padding;
+  final BoxDecoration decoration;
+  final TextStyle titleStyle;
 
   const _SettingsSection({
     required this.title,
     required this.children,
     this.padding = const EdgeInsets.only(bottom: 15),
+    this.decoration = BoxDecoration(),
+    this.titleStyle = TextStyle(),
   });
 
   @override
@@ -696,7 +706,7 @@ class _SettingsSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: Theme.of(context).textTheme.titleMedium),
+              Text(title, style: titleStyle),
               const SizedBox(height: 10),
               ...children,
             ],

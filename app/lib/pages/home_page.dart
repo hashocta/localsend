@@ -104,14 +104,14 @@ class _HomePageState extends State<HomePage> with Refena {
                     selectedIndex: vm.currentTab.index,
                     onDestinationSelected: (index) => vm.changeTab(HomeTab.values[index]),
                     extended: sizingInformation.isDesktop,
-                    backgroundColor: Theme.of(context).cardColorWithElevation,
+                    backgroundColor: Colors.blueGrey[900],
                     leading: sizingInformation.isDesktop
                         ? const Column(
                             children: [
                               SizedBox(height: 20),
                               Text(
                                 'LocalSend',
-                                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 20),
@@ -120,8 +120,8 @@ class _HomePageState extends State<HomePage> with Refena {
                         : null,
                     destinations: HomeTab.values.map((tab) {
                       return NavigationRailDestination(
-                        icon: Icon(tab.icon),
-                        label: Text(tab.label),
+                        icon: Icon(tab.icon, color: Colors.white),
+                        label: Text(tab.label, style: TextStyle(color: Colors.white)),
                       );
                     }).toList(),
                   ),
@@ -143,14 +143,14 @@ class _HomePageState extends State<HomePage> with Refena {
                           Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                              color: Colors.black.withOpacity(0.7),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Icon(Icons.file_download, size: 128),
+                                const Icon(Icons.file_download, size: 150, color: Colors.white),
                                 const SizedBox(height: 30),
-                                Text(t.sendTab.placeItems, style: Theme.of(context).textTheme.titleLarge),
+                                Text(t.sendTab.placeItems, style: TextStyle(fontSize: 24, color: Colors.white)),
                               ],
                             ),
                           ),
@@ -162,10 +162,11 @@ class _HomePageState extends State<HomePage> with Refena {
             ),
             bottomNavigationBar: sizingInformation.isMobile
                 ? NavigationBar(
+                    backgroundColor: Colors.blueGrey[800],
                     selectedIndex: vm.currentTab.index,
                     onDestinationSelected: (index) => vm.changeTab(HomeTab.values[index]),
                     destinations: HomeTab.values.map((tab) {
-                      return NavigationDestination(icon: Icon(tab.icon), label: tab.label);
+                      return NavigationDestination(icon: Icon(tab.icon, color: Colors.white), label: Text(tab.label, style: TextStyle(color: Colors.white)));
                     }).toList(),
                   )
                 : null,
